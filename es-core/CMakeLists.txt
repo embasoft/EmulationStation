@@ -161,4 +161,4 @@ list(APPEND CORE_SOURCES ${EMBEDDED_ASSET_SOURCES})
 
 include_directories(${COMMON_INCLUDE_DIRS})
 add_library(es-core STATIC ${CORE_SOURCES} ${CORE_HEADERS})
-target_link_libraries(es-core ${COMMON_LIBRARIES})
+target_link_libraries(es-core ${CMAKE_DL_LIBS} ${COMMON_LIBRARIES})

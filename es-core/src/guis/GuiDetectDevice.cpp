@@ -104,7 +104,9 @@ void GuiDetectDevice::update(int deltaTime)
 		const float t = (float)mHoldTime / HOLD_TIME;
 		unsigned int c = (unsigned char)(t * 255);
 		mDeviceHeld->setColor((c << 24) | (c << 16) | (c << 8) | 0xFF);
-		if(mHoldTime <= 0)
+		
+		// ignore time for CEC devices, because my device(or all IR devices?) doesn't support long presses
+		if(mHoldTime <= 0 || mHoldingConfig->getDeviceId() == DEVICE_CEC)
 		{
 			// picked one!
 			mWindow->pushGui(new GuiInputConfig(mWindow, mHoldingConfig, true, mDoneCallback));
